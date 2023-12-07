@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tex to Voice</title>
+    <link rel="stylesheet" href="textoVoice.css">
+</head>
+<body>
+<div class="hero">
+    <h1>Text To <span>Voice</span></h1>
+    <textarea placeholder="Please write what you want to say" id="textArea"></textarea><br>
+    <div class="bottomSelect"><select id="voiceSelect"></select><br>
+    <button id="speakButton">Click here</button></div>
+</div>
+
+    <script>
+        // 値を定義します
+        const textArea = document.querySelector("#textArea");
+        const voiceSelect = document.querySelector("#voiceSelect");
+        const button = document.querySelector("#speakButton");
+        
+        // 関数定義します
+        function loadVoices(){
+            // ブラウザで利用可能な音声のリストを取得
+            const voices = speechSynthesis.getVoices();
+            // セレクトボックス内の子要素（オプション）をクリアします
+            voiceSelect.innerHTML ="";
+
+
+            // 新しい <option> 要素を作成
+            const chooseVoiceOption = document.createElement("option");
+            // 作成した < option > 要素のテキストコンテンツ（表示されるテキスト）を設定
+            chooseVoiceOption.textContent = "Select Your Voice";
+            //  作成した < option > 要素を voiceSelect セレクトボックスに追加
+            voiceSelect.appendChild(chooseVoiceOption);
+
+
+            //  配列の各要素（音声）に対して繰り返し処理
+            voices.forEach(voice => {
+                // 特定の言語（ここでは日本語）をフィルタリング
+                if (voice.lang.startsWith("ja")){
+                // 新しい < option > 要素を作成
+                const option = document.createElement("option");
+                // 作成した < option > 要素の value 属性に、音声の名前を設定
+                option.value = voice.name;
+                // 作成した < option > 要素のテキストコンテンツに、音声の名前と言語を表示するテキストを設定
+                option.textContent = `${voice.name}(${voice.lang})`;
+                // 作成した < option > 要素を voiceSelect セレクトボックスに追加
+                voiceSelect.appendChild(option);
+                }
+            });
+        };
+
+            speechSynthesis.addEventListener("voiceschanged",loadVoices);
+
+            button.addEventListener('click',() =>{
+                // テキストエリアの値を取得
+                const utterance = new SpeechSynthesisUtterance(textArea.value);
+                // SpeechSynthesisUtterance オブジェクトを作成
+                const selectedVoice = voiceSelect.value;
+
+                const voices =  speechSynthesis.getVoices();
+                const voice = voices.find(v => v.name === selectedVoice);
+
+                if(voice) {
+                    utterance.voice = voice;
+                    speechSynthesis.speak(utterance);
+                }
+            });
+
+            voiceSelect.addEventListener("change",()=>{
+                // 現在の読み上げをキャンセル
+                speechSynthesis.cancel();
+                // ボタンをクリックして新しい音声でテキストを読み上げる
+                button.click();
+            });
+
+        
+    </script>
+
+</body>
+</html>

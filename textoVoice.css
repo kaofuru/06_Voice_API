@@ -1,0 +1,93 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background: #f6f6f9 ;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.hero h1{
+    font-size: 45px;
+    font-weight: 800;
+    margin-bottom: 50px;
+    color:#363949;
+}
+.hero h1 span{
+    color: rgb(251, 108, 25);
+}
+
+textarea{
+    padding: 1.8rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 600px;
+    height: 250px;
+    background: #ffffff;
+    color: #363949;
+    font-size: 15px;
+    border: 0;
+    font-size: 20px;
+    font-weight: 1;
+}
+textarea:hover {
+    box-shadow: none;
+    transform: scale(1.02);
+}
+
+
+select{
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 1rem;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 450px;
+    height: 40px;
+    background: #ffffff;
+    color: #363949;
+    font-size: 20px;
+    border: 0;
+    font-weight: 800;
+}
+select:hover{
+    box-shadow: none;
+    transform: scale(1.02);
+}
+
+button  {
+    padding: 20px;
+    /* padding-right: 20px; */
+    border-radius: 2rem;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 150px;
+    height: 70px;
+    background: #fd9e3e;
+    color: #ffffff;
+    font-size: 20px;
+    border: 0;
+    font-weight: 800;
+}
+button:hover {
+    box-shadow: none; 
+    color:#ffffff ;
+    background-color:#f4871b;
+    transform: scale(1.05);
+}
+
+.bottomSelect{
+    display: flex;
+    justify-content: space-around;
+    width: 660px;
+    align-items: center;
+}
